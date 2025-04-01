@@ -1,0 +1,129 @@
+__S0 8000 0 ABS 0
+__S1 0 0 ABS 0
+__S3 0 0 ABS 0
+__Hudata_bank4 0 0 ABS 0
+__Ludata_bank4 0 0 ABS 0
+__Hconfig 30000E 0 CONFIG 4
+__Lconfig 0 0 CONFIG 4
+__Hudata_acs 0 0 ABS 0
+__Ludata_acs 0 0 ABS 0
+isa$xinst 0 0 ABS 0
+__Hudata_bank5 0 0 ABS 0
+__Ludata_bank5 0 0 ABS 0
+__Hcode 0 0 ABS 0
+__Lcode 0 0 ABS 0
+__Hdata 0 0 ABS 0
+__Ldata 0 0 ABS 0
+isa$std 1 0 ABS 0
+__HmainCode 0 0 ABS 0
+__LmainCode 0 0 ABS 0
+__HuartCode 0 0 ABS 0
+__LuartCode 0 0 ABS 0
+__Hudata_bank0 0 0 ABS 0
+__Ludata_bank0 0 0 ABS 0
+__HresetVector 0 0 ABS 0
+__LresetVector 0 0 ABS 0
+__Hudata_bank6 0 0 ABS 0
+__Ludata_bank6 0 0 ABS 0
+__H__absolute__ 0 0 ABS 0
+__L__absolute__ 0 0 ABS 0
+__Hedata 0 0 ABS 0
+__Ledata 0 0 ABS 0
+__Hudata 0 0 ABS 0
+__Ludata 0 0 ABS 0
+__Hudata_bank1 0 0 ABS 0
+__Ludata_bank1 0 0 ABS 0
+__Hspace_0 8000 0 ABS 0
+__Lspace_0 0 0 ABS 0
+__Hspace_1 0 0 ABS 0
+__Lspace_1 0 0 ABS 0
+__Hudata_bank7 0 0 ABS 0
+__Ludata_bank7 0 0 ABS 0
+__Hspace_3 0 0 ABS 0
+__Lspace_3 0 0 ABS 0
+__Hspace_4 60000E 0 ABS 0
+__Lspace_4 0 0 ABS 0
+__Hudata_bank2 0 0 ABS 0
+__Ludata_bank2 0 0 ABS 0
+__Hudata_bank3 0 0 ABS 0
+__Ludata_bank3 0 0 ABS 0
+%segments
+uartCode 7FBE 7FFF CODE 7FBE 0
+uartCode%85 7F7C 7FBD CODE 7F7C 0
+mainCode 7F68 7F7B CODE 7F68 0
+resetVector 7F64 7F67 CODE 7F64 0
+%locals
+build/default/debug/main.o
+./uart.asm
+15 7F7C 0 CODE 0
+16 7F7E 0 CODE 0
+17 7F80 0 CODE 0
+20 7F82 0 CODE 0
+25 7F84 0 CODE 0
+28 7F86 0 CODE 0
+29 7F88 0 CODE 0
+30 7F8A 0 CODE 0
+34 7F8C 0 CODE 0
+35 7F8E 0 CODE 0
+37 7F90 0 CODE 0
+38 7F92 0 CODE 0
+42 7F94 0 CODE 0
+43 7F96 0 CODE 0
+47 7F98 0 CODE 0
+48 7F9A 0 CODE 0
+52 7F9C 0 CODE 0
+53 7F9E 0 CODE 0
+54 7FA2 0 CODE 0
+55 7FA4 0 CODE 0
+58 7FA8 0 CODE 0
+60 7FAA 0 CODE 0
+61 7FAC 0 CODE 0
+62 7FB0 0 CODE 0
+65 7FB2 0 CODE 0
+66 7FB4 0 CODE 0
+67 7FB6 0 CODE 0
+68 7FB8 0 CODE 0
+69 7FBA 0 CODE 0
+70 7FBC 0 CODE 0
+main.asm
+5 7F64 0 CODE 0
+main.asm
+10 7F68 0 CODE 0
+11 7F6A 0 CODE 0
+14 7F6C 0 CODE 0
+15 7F70 0 CODE 0
+18 7F74 0 CODE 0
+19 7F76 0 CODE 0
+22 7F7A 0 CODE 0
+build/default/debug/uart.o
+uart.asm
+15 7FBE 0 CODE 0
+16 7FC0 0 CODE 0
+17 7FC2 0 CODE 0
+20 7FC4 0 CODE 0
+25 7FC6 0 CODE 0
+28 7FC8 0 CODE 0
+29 7FCA 0 CODE 0
+30 7FCC 0 CODE 0
+34 7FCE 0 CODE 0
+35 7FD0 0 CODE 0
+37 7FD2 0 CODE 0
+38 7FD4 0 CODE 0
+42 7FD6 0 CODE 0
+43 7FD8 0 CODE 0
+47 7FDA 0 CODE 0
+48 7FDC 0 CODE 0
+52 7FDE 0 CODE 0
+53 7FE0 0 CODE 0
+54 7FE4 0 CODE 0
+55 7FE6 0 CODE 0
+58 7FEA 0 CODE 0
+60 7FEC 0 CODE 0
+61 7FEE 0 CODE 0
+62 7FF2 0 CODE 0
+65 7FF4 0 CODE 0
+66 7FF6 0 CODE 0
+67 7FF8 0 CODE 0
+68 7FFA 0 CODE 0
+69 7FFC 0 CODE 0
+70 7FFE 0 CODE 0
