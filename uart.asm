@@ -30,8 +30,10 @@ uart_init:
     bsf TXSTA1, 1  ; TRMT : TX is done.
     
     ; Set baud-rate with SPBRG1 :
-    ; = 16,000,000 / (16 x 9,600) - 1 = 103.1667
-    movlw 103     ; 9600 @ 16Mhz FOSC
+    ; = 16,000,000 / (16 x 9,600) - 1 = 103.1667 => 103
+    ; = 16,000,000 / (16 x 115,200) - 1 = 7.6805 => 8
+;    movlw 103     ; 9600 @ 16Mhz FOSC
+    movlw 8        ; 115200 @ 16Mhz FOSC
     movwf SPBRG1  ;
     
     clrf SPBRGH1   ; 0x00
