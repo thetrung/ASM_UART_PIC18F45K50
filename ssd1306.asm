@@ -121,24 +121,76 @@ ssd1306_init:
 ;; STOP I2C ;; 
     call i2c_stop
     return
-        
-draw_pixel macro data
-    call i2c_start
-    oled_write OLED_ADDRESS
-    oled_write OLED_COMMAND
-    oled_write SSD1306_PAGEADDR
-    oled_write 0x00
-    oled_write 0xFF
-    oled_write SSD1306_COLUMNADDR
-    oled_write 0x00
-    call i2c_stop
+
+ssd1306_command macro cmd
+ call i2c_start
+ oled_write OLED_ADDRESS
+ oled_write OLED_COMMAND
+ oled_write cmd
+ call i2c_stop
+endm
+ 
+;  ssd1306_command(SSD1306_COLUMNADDR);
+;  ssd1306_command(0);    // Column start address
+;  #if defined SSD1306_128_64 || defined SSD1306_128_32
+;  ssd1306_command(127);  // Column end address
+;  #else
+;    ssd1306_command(95); // Column end address
+;  #endif
+;
+;  ssd1306_command(SSD1306_PAGEADDR);
+;  ssd1306_command(0);   // Page start address (0 = reset)
+;  #if defined SSD1306_128_64
+;  ssd1306_command(7);   // Page end address
+;  #elif defined SSD1306_128_32
+;  ssd1306_command(3);   // Page end address
+;  #elif defined SSD1306_96_16
+;  ssd1306_command(1);   // Page end address
+;  #endif
+;
+;  I2C_Begin();
+;  I2C_Write(_i2caddr);
+;  I2C_Write(0x40);
+;
+;  for(uint16_t i = 0; i < SSD1306_LCDHEIGHT * SSD1306_LCDWIDTH / 8; i++ )
+;    I2C_Write(0);
+;
+;  I2C_End();
+clear_display macro
+    ssd1306_command SSD1306_COLUMNADDR; [0..127]
+    ssd1306_command 0x00            ;; column start address 0
+    ssd1306_command 127             ;; column end   address 127
+    
+    ssd1306_command SSD1306_PAGEADDR;; [0..7]
+    ssd1306_command 0x00            ;; page start address 0
+    ssd1306_command 7               ;; page end   address 7
     
     call i2c_start
     oled_write OLED_ADDRESS
     oled_write OLED_DATA
-    oled_write data
+    
+    
+column_loop:   
+    oled_write 1    ; filling instead of clearing :)
+    incf column, f
+    movf column, w
+    subwf 128
+    btfss STATUS, Z
+    goto column_loop
+    
+page_loop:
+    incf page, f
+    movf page, w
+    sublw 8
+    btfss STATUS, Z
+    goto page_loop
+ 
+fill_buffer:
     call i2c_stop
 endm
-;    return 
+    
+psect udata
+page: ds 1
+column: ds 1
 
 

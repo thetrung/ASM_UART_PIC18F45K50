@@ -1,0 +1,490 @@
+%CMF
+# %PSECTS Section
+# For each object file, details of its psects are enumerated here.
+# The begining of the section is indicated by %PSECTS.  The first
+# line indicates the name of the first object file, e.g.
+#    $foo.obj
+# Each line that follows describes a psect in that object file, until
+# the next object file.  The lines that describe a psect have the
+# format:
+#    <psect name> <class name> <space> <link address> <load addresses> <length> <delta> <reloc>
+# All addresses and the length are given in unqualified hexadecimal
+# in delta units.  Any other numeric values are decimal.
+%PSECTS
+$build/default/debug/i2c.o
+i2cCode CODE 0 7CEE 7CEE 42 1 2
+$build/default/debug/main.o
+udata RAM 1 62 62 2 1 1
+i2cCode CODE 0 7D30 7D30 E8 1 2
+resetVector CODE 0 7C72 7C72 4 1 2
+mainCode CODE 0 7F00 7F00 100 1 2
+uartCode CODE 0 7C76 7C76 3C 1 2
+config CONFIG 4 300000 300000 E 1 1
+$build/default/debug/uart.o
+uartCode CODE 0 7CB2 7CB2 3C 1 2
+$build/default/debug/ssd1306.o
+udata RAM 1 60 60 2 1 1
+i2cCode CODE 0 7E18 7E18 E8 1 2
+# %UNUSED Section
+# This section enumerates the unused ranges of each CLASS. Each entry
+# is described on a single line as follows:
+#    <class name> <range> <delta>
+# Addresses given in the range are in hexadecimal and units of delta.
+%UNUSED
+RAM 64-7FF 1
+SFR F53-FFF 1
+BANK0 64-FF 1
+BANK1 100-1FF 1
+BANK2 200-2FF 1
+BANK3 300-3FF 1
+BANK4 400-4FF 1
+BANK5 500-5FF 1
+BANK6 600-6FF 1
+BANK7 700-7FF 1
+CONST 0-7C71 1
+IDLOC 200000-200007 1
+SMALLCONST 800-7C71 1
+CODE 0-7C71 1
+BIGRAM 0-7FF 1
+BIGSFR F53-FFF 1
+COMRAM 0-5F 1
+EEDATA F00000-F000FF 1
+MEDIUMCONST 800-7C71 1
+# %LINETAB Section
+# This section enumerates the file/line to address mappings.
+# The beginning of the section is indicated by %LINETAB.
+# The first line indicates the name of the first object file, e.g.
+#   $foo.obj
+# Each line that follows describes a single mapping until the next
+# object file.  Mappings have the following format:
+#    <address> <psect name> <class name> ><line number>:<file name>
+# The address is absolute and given given in unqualified hex 
+# in delta units of the psect. All mappings within an object file
+# are in ascending order of addresses.
+# All other numeric values are in decimal.
+%LINETAB
+$build/default/debug/i2c.o
+7CEE i2cCode CODE >49:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7CF0 i2cCode CODE >50:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7CF2 i2cCode CODE >51:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7CF4 i2cCode CODE >51:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7CF6 i2cCode CODE >52:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7CF8 i2cCode CODE >52:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7CFA i2cCode CODE >53:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7CFC i2cCode CODE >53:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7CFE i2cCode CODE >54:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7D00 i2cCode CODE >54:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7D02 i2cCode CODE >55:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7D04 i2cCode CODE >56:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7D06 i2cCode CODE >63:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7D08 i2cCode CODE >64:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7D0C i2cCode CODE >66:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7D0E i2cCode CODE >67:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7D10 i2cCode CODE >68:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7D12 i2cCode CODE >69:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7D16 i2cCode CODE >70:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7D18 i2cCode CODE >78:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7D1C i2cCode CODE >79:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7D1E i2cCode CODE >80:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7D20 i2cCode CODE >88:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7D24 i2cCode CODE >89:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7D26 i2cCode CODE >90:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7D28 i2cCode CODE >99:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7D2C i2cCode CODE >100:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7D2E i2cCode CODE >101:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+$build/default/debug/main.o
+7F00 mainCode CODE >11:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7F02 mainCode CODE >12:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7F04 mainCode CODE >19:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7F08 mainCode CODE >22:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7F0C mainCode CODE >23:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7F10 mainCode CODE >24:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7F14 mainCode CODE >24:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7F16 mainCode CODE >24:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7F1A mainCode CODE >24:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7F1C mainCode CODE >24:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7F20 mainCode CODE >24:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7F22 mainCode CODE >24:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7F2A mainCode CODE >24:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7F2E mainCode CODE >24:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7F30 mainCode CODE >24:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7F34 mainCode CODE >24:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7F36 mainCode CODE >24:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7F3A mainCode CODE >24:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7F3C mainCode CODE >24:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7F44 mainCode CODE >24:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7F48 mainCode CODE >24:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7F4A mainCode CODE >24:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7F4E mainCode CODE >24:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7F50 mainCode CODE >24:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7F54 mainCode CODE >24:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7F56 mainCode CODE >24:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7F5E mainCode CODE >24:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7F62 mainCode CODE >24:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7F64 mainCode CODE >24:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7F68 mainCode CODE >24:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7F6A mainCode CODE >24:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7F6E mainCode CODE >24:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7F70 mainCode CODE >24:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7F78 mainCode CODE >24:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7F7C mainCode CODE >24:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7F7E mainCode CODE >24:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7F82 mainCode CODE >24:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7F84 mainCode CODE >24:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7F88 mainCode CODE >24:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7F8A mainCode CODE >24:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7F92 mainCode CODE >24:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7F96 mainCode CODE >24:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7F98 mainCode CODE >24:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7F9C mainCode CODE >24:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7F9E mainCode CODE >24:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7FA2 mainCode CODE >24:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7FA4 mainCode CODE >24:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7FB0 mainCode CODE >24:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7FB2 mainCode CODE >24:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7FB6 mainCode CODE >24:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7FB8 mainCode CODE >24:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7FBC mainCode CODE >24:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7FBE mainCode CODE >24:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7FDE mainCode CODE >28:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7FE2 mainCode CODE >31:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7FE6 mainCode CODE >35:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7FE8 mainCode CODE >36:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7FEA mainCode CODE >37:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7FEC mainCode CODE >37:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7FEE mainCode CODE >38:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7FF0 mainCode CODE >38:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7FF2 mainCode CODE >39:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7FF4 mainCode CODE >39:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7FF6 mainCode CODE >41:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7FF8 mainCode CODE >42:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7FFC mainCode CODE >43:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7FFE mainCode CODE >44:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7C72 resetVector CODE >6:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/main.asm
+7D30 i2cCode CODE >49:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7D32 i2cCode CODE >50:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7D34 i2cCode CODE >51:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7D36 i2cCode CODE >51:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7D38 i2cCode CODE >52:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7D3A i2cCode CODE >52:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7D3C i2cCode CODE >53:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7D3E i2cCode CODE >53:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7D40 i2cCode CODE >54:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7D42 i2cCode CODE >54:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7D44 i2cCode CODE >55:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7D46 i2cCode CODE >56:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7D48 i2cCode CODE >63:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7D4A i2cCode CODE >64:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7D4E i2cCode CODE >66:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7D50 i2cCode CODE >67:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7D52 i2cCode CODE >68:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7D54 i2cCode CODE >69:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7D58 i2cCode CODE >70:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7D5A i2cCode CODE >78:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7D5E i2cCode CODE >79:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7D60 i2cCode CODE >80:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7D62 i2cCode CODE >88:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7D66 i2cCode CODE >89:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7D68 i2cCode CODE >90:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7D6A i2cCode CODE >99:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7D6E i2cCode CODE >100:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7D70 i2cCode CODE >101:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7D72 i2cCode CODE >74:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7D76 i2cCode CODE >75:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7D78 i2cCode CODE >75:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7D7C i2cCode CODE >80:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7D7E i2cCode CODE >80:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7D82 i2cCode CODE >81:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7D84 i2cCode CODE >81:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7D88 i2cCode CODE >82:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7D8A i2cCode CODE >82:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7D8E i2cCode CODE >83:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7D90 i2cCode CODE >83:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7D94 i2cCode CODE >85:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7D96 i2cCode CODE >85:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7D9A i2cCode CODE >86:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7D9C i2cCode CODE >86:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7DA0 i2cCode CODE >87:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7DA2 i2cCode CODE >87:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7DA6 i2cCode CODE >88:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7DA8 i2cCode CODE >88:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7DAC i2cCode CODE >90:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7DAE i2cCode CODE >90:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7DB2 i2cCode CODE >92:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7DB4 i2cCode CODE >92:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7DB8 i2cCode CODE >93:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7DBA i2cCode CODE >93:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7DBE i2cCode CODE >94:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7DC0 i2cCode CODE >94:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7DC4 i2cCode CODE >95:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7DC6 i2cCode CODE >95:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7DCA i2cCode CODE >108:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7DCC i2cCode CODE >108:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7DD0 i2cCode CODE >109:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7DD2 i2cCode CODE >109:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7DD6 i2cCode CODE >110:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7DD8 i2cCode CODE >110:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7DDC i2cCode CODE >111:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7DDE i2cCode CODE >111:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7DE2 i2cCode CODE >112:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7DE4 i2cCode CODE >112:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7DE8 i2cCode CODE >113:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7DEA i2cCode CODE >113:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7DEE i2cCode CODE >115:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7DF0 i2cCode CODE >115:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7DF4 i2cCode CODE >116:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7DF6 i2cCode CODE >116:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7DFA i2cCode CODE >117:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7DFC i2cCode CODE >117:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7E00 i2cCode CODE >118:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7E02 i2cCode CODE >118:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7E06 i2cCode CODE >119:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7E08 i2cCode CODE >119:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7E0C i2cCode CODE >120:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7E0E i2cCode CODE >120:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7E12 i2cCode CODE >122:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7E16 i2cCode CODE >123:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7C76 uartCode CODE >16:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/uart.asm
+7C78 uartCode CODE >21:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/uart.asm
+7C7A uartCode CODE >24:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/uart.asm
+7C7C uartCode CODE >25:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/uart.asm
+7C7E uartCode CODE >26:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/uart.asm
+7C80 uartCode CODE >32:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/uart.asm
+7C82 uartCode CODE >33:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/uart.asm
+7C84 uartCode CODE >35:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/uart.asm
+7C86 uartCode CODE >36:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/uart.asm
+7C88 uartCode CODE >40:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/uart.asm
+7C8A uartCode CODE >41:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/uart.asm
+7C8C uartCode CODE >45:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/uart.asm
+7C8E uartCode CODE >46:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/uart.asm
+7C90 uartCode CODE >50:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/uart.asm
+7C92 uartCode CODE >51:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/uart.asm
+7C96 uartCode CODE >52:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/uart.asm
+7C98 uartCode CODE >53:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/uart.asm
+7C9C uartCode CODE >56:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/uart.asm
+7C9E uartCode CODE >58:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/uart.asm
+7CA0 uartCode CODE >59:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/uart.asm
+7CA4 uartCode CODE >60:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/uart.asm
+7CA6 uartCode CODE >63:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/uart.asm
+7CA8 uartCode CODE >64:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/uart.asm
+7CAA uartCode CODE >65:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/uart.asm
+7CAC uartCode CODE >66:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/uart.asm
+7CAE uartCode CODE >67:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/uart.asm
+7CB0 uartCode CODE >68:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/uart.asm
+$build/default/debug/uart.o
+7CB2 uartCode CODE >16:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/uart.asm
+7CB4 uartCode CODE >21:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/uart.asm
+7CB6 uartCode CODE >24:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/uart.asm
+7CB8 uartCode CODE >25:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/uart.asm
+7CBA uartCode CODE >26:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/uart.asm
+7CBC uartCode CODE >32:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/uart.asm
+7CBE uartCode CODE >33:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/uart.asm
+7CC0 uartCode CODE >35:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/uart.asm
+7CC2 uartCode CODE >36:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/uart.asm
+7CC4 uartCode CODE >40:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/uart.asm
+7CC6 uartCode CODE >41:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/uart.asm
+7CC8 uartCode CODE >45:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/uart.asm
+7CCA uartCode CODE >46:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/uart.asm
+7CCC uartCode CODE >50:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/uart.asm
+7CCE uartCode CODE >51:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/uart.asm
+7CD2 uartCode CODE >52:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/uart.asm
+7CD4 uartCode CODE >53:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/uart.asm
+7CD8 uartCode CODE >56:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/uart.asm
+7CDA uartCode CODE >58:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/uart.asm
+7CDC uartCode CODE >59:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/uart.asm
+7CE0 uartCode CODE >60:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/uart.asm
+7CE2 uartCode CODE >63:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/uart.asm
+7CE4 uartCode CODE >64:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/uart.asm
+7CE6 uartCode CODE >65:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/uart.asm
+7CE8 uartCode CODE >66:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/uart.asm
+7CEA uartCode CODE >67:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/uart.asm
+7CEC uartCode CODE >68:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/uart.asm
+$build/default/debug/ssd1306.o
+7E18 i2cCode CODE >49:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7E1A i2cCode CODE >50:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7E1C i2cCode CODE >51:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7E1E i2cCode CODE >51:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7E20 i2cCode CODE >52:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7E22 i2cCode CODE >52:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7E24 i2cCode CODE >53:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7E26 i2cCode CODE >53:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7E28 i2cCode CODE >54:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7E2A i2cCode CODE >54:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7E2C i2cCode CODE >55:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7E2E i2cCode CODE >56:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7E30 i2cCode CODE >63:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7E32 i2cCode CODE >64:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7E36 i2cCode CODE >66:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7E38 i2cCode CODE >67:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7E3A i2cCode CODE >68:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7E3C i2cCode CODE >69:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7E40 i2cCode CODE >70:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7E42 i2cCode CODE >78:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7E46 i2cCode CODE >79:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7E48 i2cCode CODE >80:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7E4A i2cCode CODE >88:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7E4E i2cCode CODE >89:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7E50 i2cCode CODE >90:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7E52 i2cCode CODE >99:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7E56 i2cCode CODE >100:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7E58 i2cCode CODE >101:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/i2c.asm
+7E5A i2cCode CODE >74:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7E5E i2cCode CODE >75:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7E60 i2cCode CODE >75:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7E64 i2cCode CODE >80:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7E66 i2cCode CODE >80:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7E6A i2cCode CODE >81:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7E6C i2cCode CODE >81:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7E70 i2cCode CODE >82:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7E72 i2cCode CODE >82:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7E76 i2cCode CODE >83:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7E78 i2cCode CODE >83:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7E7C i2cCode CODE >85:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7E7E i2cCode CODE >85:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7E82 i2cCode CODE >86:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7E84 i2cCode CODE >86:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7E88 i2cCode CODE >87:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7E8A i2cCode CODE >87:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7E8E i2cCode CODE >88:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7E90 i2cCode CODE >88:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7E94 i2cCode CODE >90:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7E96 i2cCode CODE >90:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7E9A i2cCode CODE >92:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7E9C i2cCode CODE >92:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7EA0 i2cCode CODE >93:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7EA2 i2cCode CODE >93:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7EA6 i2cCode CODE >94:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7EA8 i2cCode CODE >94:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7EAC i2cCode CODE >95:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7EAE i2cCode CODE >95:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7EB2 i2cCode CODE >108:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7EB4 i2cCode CODE >108:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7EB8 i2cCode CODE >109:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7EBA i2cCode CODE >109:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7EBE i2cCode CODE >110:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7EC0 i2cCode CODE >110:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7EC4 i2cCode CODE >111:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7EC6 i2cCode CODE >111:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7ECA i2cCode CODE >112:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7ECC i2cCode CODE >112:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7ED0 i2cCode CODE >113:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7ED2 i2cCode CODE >113:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7ED6 i2cCode CODE >115:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7ED8 i2cCode CODE >115:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7EDC i2cCode CODE >116:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7EDE i2cCode CODE >116:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7EE2 i2cCode CODE >117:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7EE4 i2cCode CODE >117:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7EE8 i2cCode CODE >118:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7EEA i2cCode CODE >118:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7EEE i2cCode CODE >119:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7EF0 i2cCode CODE >119:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7EF4 i2cCode CODE >120:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7EF6 i2cCode CODE >120:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7EFA i2cCode CODE >122:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+7EFE i2cCode CODE >123:/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/ssd1306.asm
+# %SYMTAB Section
+# An enumeration of all symbols in the program.
+# The beginning of the section is indicated by %SYMTAB.
+# Each line describes a single symbol as follows:
+#    <label> <value> [-]<load-adj> <class> <space> <psect> <file-name>
+# The value and load-adj are both in unqualified hexadecimal.
+# All other numeric values are in decimal.  The load-adj is the
+# quantity one needs to add to the symbol value in order to obtain the load
+# address of the symbol.  This value may be signed. If the symbol
+# was defined in a psect then <psect> will be "-". File-name
+# is the name of the object file in which the symbol was defined.
+%SYMTAB
+__Hspace_0 8000 0 ABS 0 - -
+__Hspace_1 64 0 ABS 0 - -
+__Hspace_3 0 0 ABS 0 - -
+__Hspace_4 60000E 0 ABS 0 - -
+__Hudata_bank0 0 0 ABS 0 udata_bank0 -
+__Hudata_bank1 0 0 ABS 0 udata_bank1 -
+__Hudata_bank2 0 0 ABS 0 udata_bank2 -
+__Hudata_bank3 0 0 ABS 0 udata_bank3 -
+__Hudata_bank4 0 0 ABS 0 udata_bank4 -
+__Hudata_bank5 0 0 ABS 0 udata_bank5 -
+__Hudata_bank6 0 0 ABS 0 udata_bank6 -
+__Hudata_bank7 0 0 ABS 0 udata_bank7 -
+__L__absolute__ 0 0 ABS 0 __absolute__ -
+__Li2cCode 0 0 ABS 0 i2cCode -
+__LresetVector 0 0 ABS 0 resetVector -
+__LmainCode 0 0 ABS 0 mainCode -
+__Lssd1306Code 0 0 ABS 0 ssd1306Code -
+isa$xinst 0 0 ABS 0 - build/default/debug/main.o
+__Hedata 0 0 ABS 0 edata -
+__Hudata 0 0 ABS 0 udata -
+__HmainCode 0 0 ABS 0 mainCode -
+__Hconfig 30000E 0 CONFIG 4 config -
+__Hi2cCode 0 0 ABS 0 i2cCode -
+__Ledata 0 0 ABS 0 edata -
+__Ludata 0 0 ABS 0 udata -
+__Hcode 0 0 ABS 0 code -
+__Hdata 0 0 ABS 0 data -
+__Lcode 0 0 ABS 0 code -
+__Ldata 0 0 ABS 0 data -
+__HresetVector 0 0 ABS 0 resetVector -
+__S0 8000 0 ABS 0 - -
+__S1 64 0 ABS 0 - -
+__S3 0 0 ABS 0 - -
+__Hssd1306Code 0 0 ABS 0 ssd1306Code -
+__Lconfig 0 0 CONFIG 4 config -
+isa$std 1 0 ABS 0 - build/default/debug/main.o
+__Lspace_0 0 0 ABS 0 - -
+__Lspace_1 0 0 ABS 0 - -
+__Lspace_3 0 0 ABS 0 - -
+__Lspace_4 0 0 ABS 0 - -
+__LuartCode 0 0 ABS 0 uartCode -
+__Ludata_bank0 0 0 ABS 0 udata_bank0 -
+__Ludata_bank1 0 0 ABS 0 udata_bank1 -
+__Ludata_bank2 0 0 ABS 0 udata_bank2 -
+__Ludata_bank3 0 0 ABS 0 udata_bank3 -
+__Ludata_bank4 0 0 ABS 0 udata_bank4 -
+__Ludata_bank5 0 0 ABS 0 udata_bank5 -
+__Ludata_bank6 0 0 ABS 0 udata_bank6 -
+__Ludata_bank7 0 0 ABS 0 udata_bank7 -
+__H__absolute__ 0 0 ABS 0 __absolute__ -
+__HuartCode 0 0 ABS 0 uartCode -
+__Hudata_acs 0 0 ABS 0 udata_acs -
+__Ludata_acs 0 0 ABS 0 udata_acs -
+# %SPLITSTAB Section
+# This section enumerates all the psect splits performed by the assembler.
+# The beginning of the section is indicated by %SPLITSTAB.
+# Each line is a record a particular split, where the parent psect is on
+# the left and the child on the right.  Note that a child psect is always
+# split form the top of the parent psect. All splits from a given parent
+# are listed in the order in which they occurred.
+%SPLITSTAB
+# %DABS Section
+# This section contains a table of all usuage of the assember
+# directive DABS in the program. Each line has the following format:
+#   <name> <space> <address> <size>
+# If the DABS was originally labelled then that shall be <name>,
+# otherwise name will be "-".  The <space> number is in decimal.
+# <address> and <size> are in byte units as unqaulified hexadecimal
+%DABS
+# %SEGMENTS Section
+# This sections enumerates the segments of the program.  Each segment
+# is described on a single line as follows:
+#    <name> <space> <link address> <file address> <size> <delta>
+# Addresses and size are in unqualified hexadecimal.  The link address
+# and size are in units of delta. The file address is in units of bytes.
+# All other numeric quantities are in decimal.
+%SEGMENTS
+udata 1 60 60 4 1
+i2cCode 0 7E18 7E18 E8 1
+resetVector 0 7C72 7C72 4 1
+mainCode 0 7F00 7F00 100 1
+i2cCode%120 0 7D30 7D30 E8 1
+i2cCode%121 0 7CEE 7CEE 42 1
+uartCode 0 7CB2 7CB2 3C 1
+uartCode%123 0 7C76 7C76 3C 1
+# %NOTES Section
+# This section contains data of all the note-psects.  The beginning of the section
+# is indicated by %NOTES. The first line indicates the name and decimal
+# byte-length of the first note-psect, e.g.
+#   $codecov_info_hdr 16
+# Each line that follows contains the byte-data of the psect in hexadecimal as a
+# space-separated list. These lines are limited to 16 bytes of data.
+%NOTES

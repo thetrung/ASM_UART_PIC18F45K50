@@ -7644,10 +7644,6 @@ uart_deinit:
 # 1 "./ssd1306.asm" 1
 psect ssd1306Code, class=CODE, reloc=2
 # 1 "./i2c.asm" 1
-; Enable pins ;
-; banksel LATB
-; bcf LATB, 1 ; 34/RB1 | SCL
-; bcf LATB, 0 ; 33/RB0 | SDA
 
 psect i2cCode, class=CODE, reloc=2
 ;===================================================
@@ -7657,6 +7653,7 @@ psect i2cCode, class=CODE, reloc=2
 
 
 ;; SSP1STAT
+
 
 
 
@@ -7676,90 +7673,80 @@ psect i2cCode, class=CODE, reloc=2
 ; STATUS
 
 
+
 mov macro reg, value
  movlw value
  movwf reg
 endm
-
+;
+;void I2C_Initialize(const unsigned long feq_K)
+;{
+;
+; ((LATB) and 0FFh), 0, a = 1; ((LATB) and 0FFh), 1, a = 1;
+;
+; SSP1CON1 = 0b00101000;
+; SSP1CON2 = 0b00000000;
+;
+; SSP1ADD = (_XTAL_FREQ/(4*feq_K*100))-1;
+; SSP1STAT = 0b00000000;
+;}
 i2c_init:
     ; Config bits ::
+    bcf LATB, 1 ; 34/RB1 | SCL
+    bcf LATB, 0 ; 33/RB0 | SDA
     mov SSP1STAT, 0x80 ; 1000 0000 (7 = 1)
     mov SSP1CON1, 0x08 ; 0000 1000 (SSPM = 1000)
     mov SSP1CON2, 0x00 ; 0000 0000
-    mov SSP1CON3, 0x00 ; 0000 0000
     mov SSP1ADD, 0x27 ; (16.000.000 / (4 x 100.000)) - 1 = 39
-    call i2c_isr_enable
     bsf SSP1CON1, 5 ; 5 = 1
     return
 
-i2c_deinit:
-    clrf SSP1STAT ; 0000 0000
-    clrf SSP1CON1 ; 0000 0000
-    clrf SSP1CON2 ; 0000 0000
-    clrf SSP1CON3 ; 0000 0000
-    clrf SSP1ADD ; I2C Speed.
-
-i2c_isr_enable:
-    bsf PIE2, 3 ; 3 = 1
-    bsf PIE1, 3 ; 3 = 1
+;void I2C_Hold()
+;{
+; while ( (SSP1CON2 & 0b00011111) || (SSP1STAT & 0b00000100) ) ;
+;}
+i2c_hold:
+    btfsc SSP1STAT, 2 ; skip loop if 2 = 0 (clear)
+    goto i2c_hold
+                         ; check SSP1CON2 :
+    movf SSP1CON2, w
+    andlw 0b00011111 ; hold any busy regs in [0..4]
+    btfss STATUS, 2 ; skip loop if STATUS. 2 = 1 ( set )
+    goto i2c_hold ; loop if not equal ( busy)
     return
 
-i2c_isr_disable:
-    bcf PIE2, 3 ; 3 = 0
-    bcf PIE1, 3 ; 3 = 0
-    return
-
-i2c_start: ; Start-ENable bit ::
+;void I2C_Begin()
+;{
+; I2C_Hold();
+; 0 = 1;
+;}
+i2c_start:
+    call i2c_hold
     bsf SSP1CON2, 0 ; 0 = 1
-i2c_start_wait:
-    btfsc SSP1CON2, 0 ; 0 = 0 ?
-    goto i2c_start_wait ; PIR2.((PIR2) and 0FFh), 3, a = 1 : Bus Collision ISR Flag bit
-    return ; NOTE: only work if SSPM = 1000, else it will hang forever.
-
-i2c_stop:
-    bsf SSP1CON2, 2 ; 2 = 1
-i2c_stop_wait:
-    btfsc SSP1CON2, 2 ; 2 = 1
-    goto i2c_stop_wait
     return
+
+;void I2C_Stop()
+;{
+; I2C_Hold();
+; 2 = 1;
+;}
+i2c_stop:
+    call i2c_hold
+    bsf SSP1CON2, 2 ; 2 = 1
+    return
+
+;void I2C_Write(unsigned data)
+;{
+; I2C_Hold();
+; SSPBUF = data;
+;}
 
 i2c_write: ; Write A byte :
+    call i2c_hold
     movwf SSP1BUF ; W >> SSP1BUF
-i2c_write_wait:
-    btfsc SSP1STAT, 0 ; Buffer Empty ?
-    goto i2c_write_wait ; waiting...
-    btfsc SSP1CON2, 6 ; ACK yet ? 6 == 0 ?
-    goto i2c_write_NACK ; NACK if not ACKed
-    return
-i2c_write_NACK: ; ERROR :
-    goto i2c_write_wait ; Loop again
-    return
-
-i2c_read:
-    bsf SSP1CON2, 3 ; 3 = 1
-i2c_read_wait:
-    btfss SSP1STAT, 0 ; Buffer empty ?
-    goto i2c_read_wait
-    movf SSP1BUF, w ; Content >> W
-    return
-
-i2c_ack:
-    bcf SSP1CON2, 5
-    bcf SSP1CON2, 4
-i2c_ack_wait:
-    btfsc SSP1CON2, 4
-    goto i2c_ack_wait
-    return
-
-i2c_nack:
-    bsf SSP1CON2, 5
-    bsf SSP1CON2, 4
-i2c_nack_wait:
-    btfsc SSP1CON2, 4
-    goto i2c_nack_wait
     return
 # 3 "./ssd1306.asm" 2
-;;=======================================
+ ;;=======================================
 ;; SSD1306 Sequences ::
 ;;=======================================
 # 60 "./ssd1306.asm"
@@ -7828,24 +7815,76 @@ ssd1306_init:
     call i2c_stop
     return
 
-draw_pixel macro data
-    call i2c_start
-    oled_write OLED_ADDRESS
-    oled_write OLED_COMMAND
-    oled_write 0x22
-    oled_write 0x00
-    oled_write 0xFF
-    oled_write 0x21
-    oled_write 0x00
-    call i2c_stop
+ssd1306_command macro cmd
+ call i2c_start
+ oled_write OLED_ADDRESS
+ oled_write OLED_COMMAND
+ oled_write cmd
+ call i2c_stop
+endm
+
+; ssd1306_command(0x21);
+; ssd1306_command(0);
+; #if defined SSD1306_128_64 || defined SSD1306_128_32
+; ssd1306_command(127);
+; #else
+; ssd1306_command(95);
+; #endif
+;
+; ssd1306_command(0x22);
+; ssd1306_command(0);
+; #if defined SSD1306_128_64
+; ssd1306_command(7);
+; #elif defined SSD1306_128_32
+; ssd1306_command(3);
+; #elif defined SSD1306_96_16
+; ssd1306_command(1);
+; #endif
+;
+; I2C_Begin();
+; I2C_Write(_i2caddr);
+; I2C_Write(0x40);
+;
+; for(uint16_t i = 0; i < SSD1306_LCDHEIGHT * SSD1306_LCDWIDTH / 8; i++ )
+; I2C_Write(0);
+;
+; I2C_End();
+clear_display macro
+    ssd1306_command 0x21; [0..127]
+    ssd1306_command 0x00 ;; column start address 0
+    ssd1306_command 127 ;; column end address 127
+
+    ssd1306_command 0x22;; [0..7]
+    ssd1306_command 0x00 ;; page start address 0
+    ssd1306_command 7 ;; page end address 7
 
     call i2c_start
     oled_write OLED_ADDRESS
     oled_write OLED_DATA
-    oled_write data
+
+
+column_loop:
+    oled_write 1 ; filling instead of clearing :)
+    incf column, f
+    movf column, w
+    subwf 128
+    btfss STATUS, 2
+    goto column_loop
+
+page_loop:
+    incf page, f
+    movf page, w
+    sublw 8
+    btfss STATUS, 2
+    goto page_loop
+
+fill_buffer:
     call i2c_stop
 endm
-; return
+
+psect udata
+page: ds 1
+column: ds 1
 # 4 "main.asm" 2
 
 psect resetVector, class=CODE, reloc=2
@@ -7856,20 +7895,20 @@ main:
     ; Set internal OSC => 16Mhz with IRCF:
     movlw 0b01110000 ; IRCF = 111
     movwf OSCCON ; OSCCON.IRCF = 7
-    call uart_init
-    call uart_enable
+; call uart_init
+; call uart_enable
 
 loop_i2c:
     ; Start I2C ;
-    call print_start
+; call print_start
     call i2c_init
     ; Init SSD1306
-    call print_i2c
+; call print_i2c
     call ssd1306_init
     call delay_1ms
-    draw_pixel 0x04 ;; draw (10,10)
+    clear_display
     ; Done.
-    call print_done
+; call print_done
     ; Restart ?
     goto loop_i2c
 
@@ -7889,39 +7928,39 @@ wait_TMR1IF:
     bcf PIR1, 0 ; ((PIR1) and 0FFh), 0, a
     return
 
-printc macro char
- movlw char
- call uart_write
-endm
-
-newline macro
-    printc 0x0D; CR
-    printc 0x0A; LF
-endm
-
-print_i2c: ;; I2C
-    printc 'I'
-    printc '2'
-    printc 'C'
-    newline
-    return
-
-print_done:
-    ;; I2C
-    printc 'D'
-    printc 'O'
-    printc 'N'
-    printc 'E'
-    newline
-    return
-
-
-print_start:
-    ;; ((SSP1STAT) and 0FFh), 3, a
-    printc 'S'
-    printc 'T'
-    printc 'A'
-    printc 'R'
-    printc 'T'
-    newline
-    return
+;printc macro char
+; movlw char
+; call uart_write
+;endm
+;
+;newline macro
+; printc 0x0D; CR
+; printc 0x0A; LF
+;endm
+;;
+;print_i2c: ;; I2C
+; printc 'I'
+; printc '2'
+; printc 'C'
+; newline
+; return
+;
+;print_done:
+; ;; I2C
+; printc 'D'
+; printc 'O'
+; printc 'N'
+; printc 'E'
+; newline
+; return
+;
+;
+;print_start:
+; ;; ((SSP1STAT) and 0FFh), 3, a
+; printc 'S'
+; printc 'T'
+; printc 'A'
+; printc 'R'
+; printc 'T'
+; newline
+; return

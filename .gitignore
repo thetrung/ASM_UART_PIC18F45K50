@@ -2,3 +2,5 @@
 *.log.inx
 ./build
 ./dist
+/XC8_SSD1306_45K50.X/build/
+/XC8_SSD1306_45K50.X/dist/
