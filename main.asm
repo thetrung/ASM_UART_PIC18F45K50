@@ -21,7 +21,7 @@ loop_i2c:
     call print_i2c
     call ssd1306_init
     call delay_1ms
-    draw_pixel 0x04 ;; draw (10,10)
+    clear_display
     ; Done.
     call print_done
     ; Restart ?

@@ -29,6 +29,7 @@ psect i2cCode, class=CODE, reloc=2
 #define SSPAIE 3
 ; STATUS
 #define C 0
+#define Z 2
 
 mov macro reg, value
  movlw value
