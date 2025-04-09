@@ -1,3 +1,4 @@
 *.log
 *.log.inx
-build
+./build
+./dist

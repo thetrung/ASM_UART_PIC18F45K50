@@ -1,4 +1,12 @@
+; Enable pins   ;
+;    banksel LATB
+;    bcf LATB, 1     ; 34/RB1 | SCL
+;    bcf LATB, 0     ; 33/RB0 | SDA  
 #include <xc.inc>
+psect i2cCode, class=CODE, reloc=2
+;===================================================
+; CONSTANTS
+;===================================================    
 #define FOSC 16000000    ;; Hz
 #define I2C_SPEED 100000 ;; Hz
 #define SSPADD_VAL (FOSC / (4 * I2C_SPEED)) - 1
@@ -15,28 +23,36 @@
 #define ACKEN 4
 #define ACKDT 5
 #define ACKSTAT 6
-; PIE1
-#define SSPAIE 3
 ; PIE2
 #define BCL1IE 3
+; PIE1
+#define SSPAIE 3
 ; STATUS
 #define C 0
 
-psect i2cCode, class=CODE, reloc=2
+mov macro reg, value
+ movlw value
+ movwf reg
+endm
+ 
 i2c_init:
     ; Config bits ::
-    bsf SSP1STAT, SMP    ; SMP = 1 (but 0x80 in XC8/MCC ?)
-    bcf SSP1STAT, CKE    ; CKE = 0
-    clrf SSP1CON1        ; 0000 0000
-    clrf SSP1CON2        ; 0000 0000
-    movlw 39             ; (16.000.000 / (4 x 100.000)) - 1
-    movwf SSP1ADD        ; I2C Speed.
+    mov SSP1STAT, 0x80 ; 1000 0000 (SMP = 1)
+    mov SSP1CON1, 0x08 ; 0000 1000 (SSPM = 1000)
+    mov SSP1CON2, 0x00 ; 0000 0000
+    mov SSP1CON3, 0x00 ; 0000 0000
+    mov SSP1ADD, 0x27  ; (16.000.000 / (4 x 100.000)) - 1 = 39
+    call i2c_isr_enable
     bsf SSP1CON1, SSPEN  ; SSPEN = 1
-    bsf SSP1CON1, 3      ; SSPM = 1000 (I2C Master Mode: 0x08=1000)
-;    call i2c_isr_disable  ; Interupt Enabled.
-    ; Done.
     return
 
+i2c_deinit:
+    clrf SSP1STAT        ; 0000 0000
+    clrf SSP1CON1        ; 0000 0000
+    clrf SSP1CON2        ; 0000 0000
+    clrf SSP1CON3        ; 0000 0000
+    clrf SSP1ADD        ; I2C Speed.
+    
 i2c_isr_enable:
     bsf PIE2, BCL1IE   ; BCL1IE = 1
     bsf PIE1, SSPAIE   ; SSPAIE = 1
@@ -66,7 +82,6 @@ i2c_write:              ; Write A byte :
 i2c_write_wait:
     btfsc SSP1STAT, BF  ; Buffer Empty ?
     goto i2c_write_wait ; waiting...
-    
     btfsc SSP1CON2, ACKSTAT ; ACK yet ? ACKSTAT == 0 ?
     goto i2c_write_NACK     ; NACK if not ACKed
     return

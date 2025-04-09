@@ -21,6 +21,8 @@
       <itemPath>main.asm</itemPath>
       <itemPath>config.inc</itemPath>
       <itemPath>uart.asm</itemPath>
+      <itemPath>i2c.asm</itemPath>
+      <itemPath>ssd1306.asm</itemPath>
     </logicalFolder>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
@@ -72,6 +74,12 @@
         <property key="programmerToGoFilePath"
                   value="/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/debug/default/ASM_UART_PIC18F45K50_ptg"/>
       </PK5Tool>
+      <Tool>
+        <property key="debugoptions.useswbreakpoints" value="true"/>
+        <property key="memories.programmemory.ranges" value="0-7fff"/>
+        <property key="programmerToGoFilePath"
+                  value="/Users/thetrung/MPLABXProjects/ASM_UART_PIC18F45K50.X/debug/default/ASM_UART_PIC18F45K50_ptg"/>
+      </Tool>
       <pic-as-assembler>
         <property key="fmax-errors" value="20"/>
         <property key="list-custom-assembler-options" value=""/>

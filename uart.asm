@@ -1,3 +1,4 @@
+#include <xc.inc>
 ; ================================================================
 ; NOTE:
 ; * 2 most important things in working with MCU are :
@@ -8,13 +9,8 @@
 ; in not receiving anything at all. Especially when Baud-Rate
 ; doesn't match with host/slave.
 ; ================================================================    
-#include <xc.inc>
-; define PSECT everytime we need new code block :
 psect uartCode, class=CODE, reloc=2
 uart_init:
-    clrf TRISC    ; Enable RC6/RC7:
-    bsf LATC, 6   ; RC6 | TX1
-    bsf LATC, 7   ; RC7 | RX1
     
     ;BAUDCON1 = 0x40 = 0100 000
     bsf BAUDCON1, 6; RCIDL = 1 
